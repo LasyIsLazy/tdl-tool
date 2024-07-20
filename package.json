@@ -1,0 +1,18 @@
+{
+  "name": "tdl-tool",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@spongex/os-appdata-path": "^0.2.2",
+    "commander": "^12.1.0",
+    "downloads-folder": "^3.0.3"
+  }
+}
