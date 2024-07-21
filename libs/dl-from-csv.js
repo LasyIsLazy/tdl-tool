@@ -25,7 +25,6 @@ export default async function downloadFromCSV(filePath) {
     for (const [index, line] of list.entries()) {
         const progressStr = `${index + 1}/${len}`
         let [link, linkCount, folder] = parseCSVLine(line)
-        console.log('🚀 ~ downloadFromCSV ~ folder:', folder)
         logger.info(`Start ${progressStr}, comment`)
         if (folder) {
             logger.info(`Download to ${folder}`)

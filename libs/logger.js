@@ -1,6 +1,8 @@
 import { createWriteStream, WriteStream } from 'fs'
 
-const infoStream = createWriteStream('./tdl_tool.log')
+const infoStream = createWriteStream('./tdl_tool.log', {
+    flags: 'a',
+})
 const errorStream = createWriteStream('./tdl_tool_error.log')
 
 /**

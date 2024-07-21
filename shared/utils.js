@@ -15,9 +15,6 @@ export async function writeAppData(app, fileRelativePath, data) {
     const created = await mkdir(path.join(__os_appdata_path, app), {
         recursive: true,
     })
-    console.log('🚀 ~ created ~ created:', created)
-
-    console.log('🚀 ~ writeAppData ~ filePath:', filePath)
     await writeFile(filePath, data, {
         encoding: 'utf8',
     })
