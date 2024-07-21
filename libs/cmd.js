@@ -35,12 +35,15 @@ export function runTDL(command, args, options) {
     const cmd = spawn('tdl', spawnOptions)
 
     let output = ''
-    cmd.stdout.on('data', (data) => {
-        output += data
-        console.log(`${data}`)
-    })
 
     return new Promise((resolve, reject) => {
+        cmd.stdout.on('data', (data) => {
+            output += data
+            console.log(`${data}`)
+            if (data.includes('Error: callback:')) {
+                reject(data.toString())
+            }
+        })
         cmd.stderr.on('data', (data) => {
             console.error(`stderr: ${data}`)
             reject(data)

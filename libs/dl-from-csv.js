@@ -3,6 +3,18 @@ import { logger } from './logger.js'
 import downloadComment from './dl-comment.js'
 import downloadPost from './dl-post.js'
 
+function trimCSVValue(str = '') {
+    str = str.trim()
+    if (str.startsWith(`"`) && str.endsWith(`"`)) {
+        return str.slice(1, str.length - 1)
+    }
+    return str
+}
+
+function parseCSVLine(str) {
+    return str.split(',').map(trimCSVValue)
+}
+
 export default async function downloadFromCSV(filePath) {
     logger.info(`Download from csv: ${filePath}`)
     const content = await readFile(filePath, { encoding: 'utf8' })
@@ -12,10 +24,8 @@ export default async function downloadFromCSV(filePath) {
     logger.info(`${len} records to download`)
     for (const [index, line] of list.entries()) {
         const progressStr = `${index + 1}/${len}`
-        let [link, linkCount, folder] = line.split(',')
-        if (folder) {
-            folder = folder.trim()
-        }
+        let [link, linkCount, folder] = parseCSVLine(line)
+        console.log('🚀 ~ downloadFromCSV ~ folder:', folder)
         logger.info(`Start ${progressStr}, comment`)
         if (folder) {
             logger.info(`Download to ${folder}`)
