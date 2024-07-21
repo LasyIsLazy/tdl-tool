@@ -13,7 +13,7 @@ export async function download(urls, folder = '') {
     logger.info(`config: ${JSON.stringify(config)}`)
     let dir = config.download.folder
     if (folder) {
-        dir = path.join(dir, folder)
+        dir = path.resolve(dir, folder)
     }
     logger.info(`Start download ${JSON.stringify(urls)} to ${dir}`)
     try {
